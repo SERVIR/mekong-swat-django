@@ -1,0 +1,23 @@
+{% load static %}
+
+{% block content_dependent_styles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+ <link href="{% static 'css/main.css' %}" rel="stylesheet"/>
+{% endblock content_dependent_styles %}
+
+<div class="navigation" style="background: #162d51;display: flow-root;">
+    <div class="topnav" style="float: left;">
+        <h2><img src="{% static 'images/logo.png' %}" width="45" height="35" style="padding-bottom: 5px;"><span style="color:white;">Lower Mekong Hydrological Decision Support system</span></h2>
+
+    </div>
+    <div id="btns" style="float: right;display: flex;padding: 20px;">
+        <div id="data-modal-btn" class="header-button glyphicon-button" data-toggle="tooltip" data-placement="bottom" title="Reopen Data Viewer" style="margin-right: 15px">
+    <a data-toggle="modal" data-target="#data-modal"><span class="glyphicon glyphicon-stats"></span></a>
+  </div>
+  <div id="help-modal-btn" class="header-button glyphicon-button" data-toggle="tooltip" data-placement="bottom" title="Help" style="margin-right: 15px">
+    <a data-toggle="modal" data-target="#help-modal"><span class="glyphicon glyphicon-question-sign"></span></a>
+  </div>
+    </div>
+</div>
