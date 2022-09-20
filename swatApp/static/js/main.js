@@ -586,7 +586,7 @@ var LIBRARY_OBJECT = (function() {
                     var content = document.getElementById('popup-content');
                     var closer = document.getElementById('popup-closer');
                     container.style.display = "none";
-                if(data.error=="error") {
+                if(data.error === "error") {
                     $("#data-modal").hide();
 
                     var view = map.getView();
@@ -1806,7 +1806,7 @@ var LIBRARY_OBJECT = (function() {
         }else if (functions.length == 0) {
             alert('Please be sure you have selected start and end dates and at least 1 function')
         } else {
-            $("#cont-modal").modal('show');
+            $("#cont-modal").show();
         }
     }
 
@@ -2052,6 +2052,13 @@ var LIBRARY_OBJECT = (function() {
         var span = document.getElementById("help-close");
         span.onclick=function () {
             document.getElementById("help-modal").style.display="none";
+             document.getElementsByClassName("modal-backdrop")[0].style.display="none";
+        }
+
+         var span = document.getElementById("close");
+        span.onclick=function () {
+            document.getElementById("data-modal").style.display="none";
+             document.getElementsByClassName("modal-backdrop")[0].style.display="none";
         }
 
         $("#help-modal-btn").click(function(){
@@ -2119,7 +2126,7 @@ var LIBRARY_OBJECT = (function() {
         })
 
         $('#clip_and_compute_lulc').click(function(){
- $('#saveDataLulc').removeClass('hidden')
+        $('#saveDataLulc').removeClass('hidden')
 
             clip_rasters('lulc');
             // var raster_type = 'lulc';
@@ -2136,18 +2143,18 @@ var LIBRARY_OBJECT = (function() {
         });
 
         $("#download_data").click(function(){
-            $("#download-modal").modal('show');
+            $("#download-modal").show();
         })
         $('#nex_gdpp').click(function(){
             if($(this).is(':checked')){
-                 $("#nexgdpp-modal").modal('show');
+                 $("#nexgdpp-modal").show();
             }
         });
 
 
 
         $('#na_submit').click(function() {
-            $("#cont-modal").modal('hide');
+            $("#cont-modal").hide();
             nasaaccess()
         });
 
