@@ -648,8 +648,8 @@ var LIBRARY_OBJECT = (function() {
                 }
                 else {
                     container.style.display = "none";
-                    jQuery.noConflict();
-                    $ = jQuery;
+                    // jQuery.noConflict();
+                    // $ = jQuery;
                     $("#data-modal").show();
                     var upstreams = data.upstreams
                     var outletID = sessionStorage.streamID
@@ -1103,6 +1103,7 @@ var LIBRARY_OBJECT = (function() {
 
 
     clearLayers = function() {
+           $('#legend_container > img').remove();
         map.removeLayer(soil_layer);
         map.removeLayer(lulc_layer);
         map.removeLayer(basin_layer);
@@ -1112,22 +1113,25 @@ var LIBRARY_OBJECT = (function() {
 
 
     toggleLayers = function() {
+   $('#legend_container').hide();
             if((!$(".watershedToggle .toggle").hasClass( "off" ))) {
                 add_streams();
             }
             else {
                 map.removeLayer(streams_layer);
             }
-            if (($('#lulcOption').is(':checked')) && (!$(".basinToggle .toggle").hasClass("off")) && (!$(".stationToggle .toggle").hasClass("off"))) {
+       if (($('#lulcOption').is(':checked'))  && (!$(".stationToggle .toggle").hasClass("off"))) {
                 $('#legend_container > img').remove();
+                 $('#legend_container').show();
                 add_lulc();
-                add_basins();
+                // add_basins();
                 // add_streams();
                 add_stations();
                             //    document.getElementById("legend_container").style.display="block";
 
             } else if (($('#soilOption').is(':checked')) && (!$(".basinToggle .toggle").hasClass("off")) && (!$(".stationToggle .toggle").hasClass("off"))) {
                 $('#legend_container > img').remove();
+                 $('#legend_container').show();
                 add_soil();
                 add_basins();
                 // add_streams();
@@ -1143,11 +1147,13 @@ var LIBRARY_OBJECT = (function() {
                 // document.getElementById("legend_container").style.display="none";
             } else if (($('#lulcOption').is(':checked')) && (!$(".basinToggle .toggle").hasClass("off")) && ($(".stationToggle .toggle").hasClass("off"))) {
                 $('#legend_container > img').remove();
+                 $('#legend_container').show();
                 add_lulc();
                 add_basins();
                 // add_streams();
             } else if (($('#soilOption').is(':checked')) && (!$(".basinToggle .toggle").hasClass("off")) && ($(".stationToggle .toggle").hasClass("off"))) {
                 $('#legend_container > img').remove();
+                 $('#legend_container').show();
                 add_soil();
                 add_basins();
                 // add_streams();
@@ -1157,11 +1163,13 @@ var LIBRARY_OBJECT = (function() {
                 // add_streams();
             } else if (($('#lulcOption').is(':checked')) && ($(".basinToggle .toggle").hasClass("off")) && (!$(".stationToggle .toggle").hasClass("off"))) {
                 $('#legend_container > img').remove();
+                 $('#legend_container').show();
                 add_lulc();
                 // add_streams();
                 add_stations();
             } else if (($('#soilOption').is(':checked')) && ($(".basinToggle .toggle").hasClass("off")) && (!$(".stationToggle .toggle").hasClass("off"))) {
                 $('#legend_container > img').remove();
+                 $('#legend_container').show();
                 add_soil();
                 // add_streams();
                 add_stations();
@@ -1172,16 +1180,19 @@ var LIBRARY_OBJECT = (function() {
 
             } else if (($('#lulcOption').is(':checked')) && ($(".basinToggle .toggle").hasClass("off")) && ($(".stationToggle .toggle").hasClass("off"))) {
                 $('#legend_container > img').remove();
+                 $('#legend_container').show();
                 add_lulc();
                 // add_streams();
             } else if (($('#soilOption').is(':checked')) && ($(".basinToggle .toggle").hasClass("off")) && ($(".stationToggle .toggle").hasClass("off"))) {
                 $('#legend_container > img').remove();
+                 $('#legend_container').show();
                 add_soil();
                 // add_streams();
             } else if (($('#noneOption').is(':checked')) && ($(".basinToggle .toggle").hasClass("off")) && ($(".stationToggle .toggle").hasClass("off"))) {
                 $('#legend_container > img').remove();
                 // add_streams();
             }
+
 
     }
 
@@ -1677,13 +1688,15 @@ var LIBRARY_OBJECT = (function() {
                     $(this).datepicker('destroy');
                 });
 
+
                 if (rch === 'Yes') {
                     $('#rch-not-avail').addClass('hidden')
                     $('#rch_query').removeClass('hidden')
                     $('#rch_compute').attr('disabled', false)
                     var rch_start = result.rch.start
                     var rch_end = result.rch.end
-                    var rch_vars = result.rch.vars
+                    var rch_vars = result.rch.vars;
+                    console.log(rch_vars)
                     var rch_date_options = {
                         format: 'MM d, yyyy',
                         startDate: rch_start,
@@ -1779,7 +1792,6 @@ var LIBRARY_OBJECT = (function() {
                     // $('#soil_compute').attr('disabled', true)
                       $('#clip_and_compute_soil').attr("disabled",true);
                 }
-
                 if (nasaaccess === 'Yes') {
                     $('#na-not-avail').addClass('hidden')
                     $('#nasaaccess').attr('disabled', false)
@@ -1799,6 +1811,7 @@ var LIBRARY_OBJECT = (function() {
         $('.chk:checked').each(function () {
             functions.push($(this).val());
         });
+        console.log(functions);
         if ((watershed === undefined || start === 'Start Date' || end === 'End Date') && functions.includes("NEXgdpp") && functions.length> 1) {
             alert('Please be sure you have selected start and end dates');
         }  else if (($('#nex_from').val()=="" || $('#nex_to').val()=="") &&$("#nex_gdpp").is(':checked'))  {
@@ -1806,7 +1819,8 @@ var LIBRARY_OBJECT = (function() {
         }else if (functions.length == 0) {
             alert('Please be sure you have selected start and end dates and at least 1 function')
         } else {
-            $("#cont-modal").show();
+             document.getElementById("cont-modal").style.display="block";
+             // $("#cont-modal").show();
         }
     }
 
@@ -1847,8 +1861,8 @@ var LIBRARY_OBJECT = (function() {
 
     reset_all = function(){
         $('#rch_var_select').val([]).trigger('change');
-        // $('#rch_var_select').attr('placeholder', 'Select Variable(s)')
-           $('.rch_var').select2({'placeholder':'Select Variable(s)'});
+        // // $('#rch_var_select').attr('placeholder', 'Select Variable(s)')
+        //    $('.rch_var').select2({'placeholder':'Select Variable(s)'});
         $('#rch_start_pick').val('')
         $('#rch_end_pick').val('')
         $('#rch_start_pick').attr('placeholder', 'Start Date')
@@ -1856,7 +1870,7 @@ var LIBRARY_OBJECT = (function() {
         $('#rch_chart_container').addClass('hidden');
         $('#sub_var_select').val([]).trigger('change');
         // $('#sub_var_select').attr('placeholder', 'Select Variable(s)')
-            $('#sub_var_select').select2({'placeholder':'Select Variable(s)'});
+        //     $('#sub_var_select').select2({'placeholder':'Select Variable(s)'});
         $('#sub_start_pick').val('')
         $('#sub_end_pick').val('')
         $('#sub_start_pick').attr('placeholder', 'Start Date')
@@ -1910,7 +1924,7 @@ var LIBRARY_OBJECT = (function() {
                 var watershed_id = $('#watershed_select option:selected').val().split('|')[0]
                 sessionStorage.setItem('watershed_id', watershed_id)
               // $('#watershed_select').trigger('change');
-                console.log()
+                console.log(watershed_id)
             } else {
                 console.log(xhr.responseText);
             }
@@ -1973,6 +1987,7 @@ var LIBRARY_OBJECT = (function() {
             clearLayers();
             toggleLayers();
         })
+
 
         $('#watershed_select').change(function(){
             var watershed = $('#watershed_select option:selected').val().split('|')[1]
@@ -2100,7 +2115,9 @@ var LIBRARY_OBJECT = (function() {
             $("#saveDataLulc").click(function(){
             add_to_cart_lulc();
         });
-
+        $("#cont-close").click(function(){
+            $("#cont-modal").hide();
+        });
 
 
 
@@ -2114,11 +2131,15 @@ var LIBRARY_OBJECT = (function() {
                  if(start==""||end==""){
                      alert("Please select a start date and end date")
                  }
+                 else{
+                     $("#nexgdpp-modal").hide();
+                 }
                  nexgdpp.push(model);
                  nexgdpp.push(type);
                  nexgdpp.push(slice);
                   nexgdpp.push(start);
                    nexgdpp.push(end);
+
          })
 
         $("#nasaaccess").click(function(){
@@ -2147,15 +2168,21 @@ var LIBRARY_OBJECT = (function() {
         })
         $('#nex_gdpp').click(function(){
             if($(this).is(':checked')){
-                 $("#nexgdpp-modal").show();
+                 // $("#nexgdpp-modal").show();
+                  document.getElementById("nexgdpp-modal").style.display="block";
             }
         });
 
 
 
         $('#na_submit').click(function() {
-            $("#cont-modal").hide();
-            nasaaccess()
+            if ($("#id_email").val().length==0)
+            {
+                alert("Please enter an email address");
+            }
+            else document.getElementById("cont-modal").style.display="none";
+
+            nasaaccess();
         });
 
     })
