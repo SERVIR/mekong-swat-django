@@ -34,41 +34,50 @@
 
 
     <br>
-    <div id="params" style="width: 20%">
-    <h4><strong>Select Watershed</strong></h4>
-    <select id="watershed_select" name="watershed_select" >
-
+    <div id="params" style="width: 20%;padding-right: 20px;">
+{#    <h4><strong>Select Watershed</strong></h4>#}
+    <select id="watershed_select" name="watershed_select" hidden >
+        <option>6|lower_mekong</option>
     </select>
     <br>
     <h4><strong>Toggle Layers</strong></h4>
     <div class="basinToggle">
-      <h6>Basins</h6>
         <label>
-            <input id="basin_toggle" type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger">
+            <input id="basin_toggle" type="checkbox"  data-toggle="toggle" data-on="Basins" data-off="Basins" data-onstyle="success" data-offstyle="danger">
         </label>
     </div>
     <div class="stationToggle">
-      <h6>Stations</h6>
         <label>
-            <input id="station_toggle" type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger">
+            <input id="station_toggle" type="checkbox" checked data-toggle="toggle" data-on="Stations" data-off="Stations" data-onstyle="success" data-offstyle="danger">
         </label>
     </div>
     <div class="watershedToggle">
-      <h6>Watersheds</h6>
+
         <label>
-            <input id="watershed_toggle" type="checkbox" checked data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger">
+            <input id="watershed_toggle" type="checkbox" checked data-toggle="toggle" data-on="Watersheds" data-off="Watersheds" data-onstyle="success" data-offstyle="danger">
         </label>
     </div>
-    <h6>Supplementary Layers</h6>
+        <h4><strong>Supplementary Layers</strong></h4>
+{#        <div class="lulc_toggle">#}
+{##}
+{#        <label>#}
+{#            <input id="lulcToggle" type="checkbox"  data-toggle="toggle" data-on="Land Use/Land Cover" data-off="Land Use/Land Cover" data-onstyle="success" data-offstyle="danger">#}
+{#        </label>#}
+{#    </div>#}
+{#         <div class="soil_toggle">#}
+{#        <label>#}
+{#            <input id="soilToggle" type="checkbox"  data-toggle="toggle" data-on="Soil" data-off="Soil" data-onstyle="success" data-offstyle="danger">#}
+{#        </label>#}
+{#    </div>#}
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
         <label id="lulcToggle" class="btn btn-primary">
-          <input type="radio" class="radio" name="options" id="lulcOption" autocomplete="off"> Land Use/Land Cover
+          <input type="radio" class="radio" name="options" id="lulcOption" autocomplete="off" checked> Land Use/Land Cover
         </label>
         <label id="soilToggle" class="btn btn-primary">
           <input type="radio" class="radio" name="options" id="soilOption" autocomplete="off"> Soil
         </label>
-        <label id="noneToggle" class="btn btn-primary active">
-          <input type="radio" class="radio" name="options" id="noneOption" autocomplete="off" checked> None
+ <label id="noneToggle" class="btn btn-primary">
+          <input type="radio" class="radio" checked name="options" id="noneOption" autocomplete="off"> None
         </label>
     </div>
     <br>
@@ -108,6 +117,19 @@
   <div class="modal" id="data-modal">
       <div class="modal-content">
         <div id="tabs" class="modal-body">
+            <div class="rightbuttons">
+                                  <div class="data-buttons">
+                        <button id="rch_compute" class="btn btn-primary" type="button">Get RCH Data</button>
+                        <button id="sub_compute" class="btn btn-primary hidden" type="button">Get SUB Data</button>
+                          <button id="clip_and_compute_lulc" class="btn btn-primary hidden" type="button">Clip and Compute</button>
+                                      <button id="saveDataLulc" class="btn btn-success hidden" type="button">Add Data to Cart</button>
+                          <button id="clip_and_compute_soil" class="btn btn-primary hidden" type="button">Clip and Compute</button>
+                                      <button id="saveDataSoil" class="btn btn-success hidden" type="button">Add Data to Cart</button>
+
+                        <button id="saveData" class="btn btn-success hidden" type="button">Add Data to Cart</button>
+                      </div>
+                      <button type="button" class="btn btn-primary" id="close_tab"  data-dismiss="modal">Close</button>
+                </div>
           <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" id="rch_link" class ="active" aria-disabled><a id="rch_tab_link" href="#rch_tab" aria-controls="rch_tab" role="tab" data-toggle="tab">RCH Model Outputs</a></li>
@@ -135,7 +157,7 @@
                     <div id="rch_query" class="queryItems">
                         <div id="rch_var_picker" class="var_picker">
                             <div class="form-group">
-                            <select name="rch_var_select" id="rch_var_select" class="rch_var" multiple>
+                            <select name="rch_var_select" id="rch_var_select" class="rch_var form-control" multiple>
 {#                                 <option value="" selected disabled>Select Variable(s)</option>#}
                             </select>
                             </div>
@@ -179,7 +201,7 @@
                     </div>
                     <div id="sub_query" class="queryItems">
                         <div id="sub_var_picker" class="var_picker">
-                             <select name="sub_var_select" id="sub_var_select" class="sub_var" multiple>
+                             <select name="sub_var_select" id="sub_var_select" class="sub_var form-control" multiple>
                             </select>
                         </div>
                          <div class="subchartToggle">
@@ -351,23 +373,23 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <div class="data-buttons">
-            <button id="rch_compute" class="btn btn-primary" type="button">Get RCH Data</button>
-            <button id="sub_compute" class="btn btn-primary hidden" type="button">Get SUB Data</button>
-<!--            <button id="clip_lulc" class="btn btn-primary hidden" type="button">Clip LULC Raster</button>-->
-<!--            <button id="lulc_compute" class="btn btn-success hidden" type="button">Compute LULC Statistics</button>-->
-              <button id="clip_and_compute_lulc" class="btn btn-primary hidden" type="button">Clip and Compute</button>
-                          <button id="saveDataLulc" class="btn btn-success hidden" type="button">Add Data to Cart</button>
-<!--            <button id="clip_soil" class="btn btn-primary hidden" type="button">Clip Soil Raster</button>-->
-<!--            <button id="soil_compute" class="btn btn-success hidden" type="button">Compute Soil Statistics</button>-->
-              <button id="clip_and_compute_soil" class="btn btn-primary hidden" type="button">Clip and Compute</button>
-                          <button id="saveDataSoil" class="btn btn-success hidden" type="button">Add Data to Cart</button>
-
-            <button id="saveData" class="btn btn-success hidden" type="button">Add Data to Cart</button>
-          </div>
-          <button type="button" class="btn btn-primary" id="close_tab"  data-dismiss="modal">Close</button>
-        </div>
+{#        <div class="modal-footer">#}
+{#          <div class="data-buttons">#}
+{#            <button id="rch_compute" class="btn btn-primary" type="button">Get RCH Data</button>#}
+{#            <button id="sub_compute" class="btn btn-primary hidden" type="button">Get SUB Data</button>#}
+{#<!--            <button id="clip_lulc" class="btn btn-primary hidden" type="button">Clip LULC Raster</button>-->#}
+{#<!--            <button id="lulc_compute" class="btn btn-success hidden" type="button">Compute LULC Statistics</button>-->#}
+{#              <button id="clip_and_compute_lulc" class="btn btn-primary hidden" type="button">Clip and Compute</button>#}
+{#                          <button id="saveDataLulc" class="btn btn-success hidden" type="button">Add Data to Cart</button>#}
+{#<!--            <button id="clip_soil" class="btn btn-primary hidden" type="button">Clip Soil Raster</button>-->#}
+{#<!--            <button id="soil_compute" class="btn btn-success hidden" type="button">Compute Soil Statistics</button>-->#}
+{#              <button id="clip_and_compute_soil" class="btn btn-primary hidden" type="button">Clip and Compute</button>#}
+{#                          <button id="saveDataSoil" class="btn btn-success hidden" type="button">Add Data to Cart</button>#}
+{##}
+{#            <button id="saveData" class="btn btn-success hidden" type="button">Add Data to Cart</button>#}
+{#          </div>#}
+{#          <button type="button" class="btn btn-primary" id="close_tab"  data-dismiss="modal">Close</button>#}
+{#        </div>#}
     </div>
   </div>
 <!-- Download Data Modal -->
@@ -398,7 +420,11 @@
     </div>
   </div>
 
-  <div class="modal fade" id="nexgdpp-modal" tabindex="-1" role="dialog" aria-labelledby="nexgdpp-modal-label">
+  <div id="nexgdpp-modal" tabindex="-1" role="dialog" aria-labelledby="nexgdpp-modal-label" style="display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 10000">
     <div class="modal-dialog" role="document">
       <div class="modal-content"  style="width: 60%">
         <div class="modal-header">
@@ -452,8 +478,12 @@
 <!--<div id="popup"><p>ffff</p></div>-->
 
 <!-- Contact Information Modal -->
-  <div class="modal fade" id="cont-modal" tabindex="-1" role="dialog" aria-labelledby="cont-modal-label">
-    <div class="modal-dialog" role="document">
+  <div id="cont-modal" tabindex="-1" role="dialog" aria-labelledby="cont-modal-label" style="display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 10000">
+    <div class="modal-dialog" role="document" >
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -471,7 +501,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" id="na_submit">Submit</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="cont-close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
