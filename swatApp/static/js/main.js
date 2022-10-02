@@ -567,6 +567,8 @@ var LIBRARY_OBJECT = (function() {
     }
 
     get_upstream = function (reach_store_id, basin_store_id, watershed, watershed_id, streamID, userId,clickCoord) {
+                            document.getElementById("data-modal").style.display="none";
+
         console.log(watershed)
         console.log(watershed_id)
         console.log(userId)
@@ -587,7 +589,7 @@ var LIBRARY_OBJECT = (function() {
                     var closer = document.getElementById('popup-closer');
                     container.style.display = "none";
                 if(data.error === "error") {
-                    $("#data-modal").hide();
+                    // $("#data-modal").hide();
 
                     var view = map.getView();
                     var viewResolution = view.getResolution();
@@ -647,10 +649,12 @@ var LIBRARY_OBJECT = (function() {
                     });
                 }
                 else {
+                                        document.getElementById("data-modal").style.display="block";
+
                     container.style.display = "none";
                     // jQuery.noConflict();
                     // $ = jQuery;
-                    $("#data-modal").show();
+                    // $("#data-modal").show();
                     var upstreams = data.upstreams
                     var outletID = sessionStorage.streamID
                     sessionStorage.setItem('upstreams', upstreams)
