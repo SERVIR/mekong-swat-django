@@ -43,18 +43,18 @@
     <h4><strong>Toggle Layers</strong></h4>
     <div class="basinToggle">
         <label>
-            <input id="basin_toggle" type="checkbox"  data-toggle="toggle" data-on="Basins" data-off="Basins" data-onstyle="success" data-offstyle="danger">
+            <input id="basin_toggle" type="checkbox"  data-toggle="toggle" data-on="Basins" data-off="Basins" data-onstyle="primary" data-offstyle="danger">
         </label>
     </div>
     <div class="stationToggle">
         <label>
-            <input id="station_toggle" type="checkbox" checked data-toggle="toggle" data-on="Stations" data-off="Stations" data-onstyle="success" data-offstyle="danger">
+            <input id="station_toggle" type="checkbox" checked data-toggle="toggle" data-on="Stations" data-off="Stations" data-onstyle="primary" data-offstyle="danger">
         </label>
     </div>
     <div class="watershedToggle">
 
         <label>
-            <input id="watershed_toggle" type="checkbox" checked data-toggle="toggle" data-on="Watersheds" data-off="Watersheds" data-onstyle="success" data-offstyle="danger">
+            <input id="watershed_toggle" type="checkbox" checked data-toggle="toggle" data-on="Watersheds" data-off="Watersheds" data-onstyle="primary" data-offstyle="danger">
         </label>
     </div>
         <h4><strong>Supplementary Layers</strong></h4>
@@ -117,8 +117,8 @@
   <div class="modal" id="data-modal">
       <div class="modal-content">
         <div id="tabs" class="modal-body">
-            <div class="rightbuttons">
-                                  <div class="data-buttons">
+            <div class="rightbuttons" style="float: right">
+                                  <div class="data-buttons" style="padding-right: 15px">
                         <button id="rch_compute" class="btn btn-primary" type="button">Get RCH Data</button>
                         <button id="sub_compute" class="btn btn-primary hidden" type="button">Get SUB Data</button>
                           <button id="clip_and_compute_lulc" class="btn btn-primary hidden" type="button">Clip and Compute</button>
@@ -166,7 +166,7 @@
                          <div class="chartToggle">
 
                             <label>
-                                <input id="chart_toggle" type="checkbox" checked data-toggle="toggle" data-on="Monthly" data-off="Daily" data-onstyle="success" data-offstyle="danger">
+                                <input id="chart_toggle" type="checkbox" checked data-toggle="toggle" data-on="Monthly" data-off="Daily" data-onstyle="primary" data-offstyle="info">
                             </label>
                         </div>
                         <div id="rch_date_picker" class="date_picker">
@@ -207,7 +207,7 @@
                          <div class="subchartToggle">
 
                             <label>
-                                <input id="sub_chart_toggle" type="checkbox" checked data-toggle="toggle" data-on="Monthly" data-off="Daily" data-onstyle="success" data-offstyle="danger">
+                                <input id="sub_chart_toggle" type="checkbox" checked data-toggle="toggle" data-on="Monthly" data-off="Daily" data-onstyle="primary" data-offstyle="info">
                             </label>
                         </div>
                         <div id="sub_date_picker" class="date_picker">
