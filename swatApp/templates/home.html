@@ -40,7 +40,8 @@
         <option>6|lower_mekong</option>
     </select>
     <br>
-    <h4><strong>Toggle Layers</strong></h4>
+    <br>
+    <h4><strong>Hydrological Layers</strong></h4>
     <div class="basinToggle">
         <label>
             <input id="basin_toggle" type="checkbox"  data-toggle="toggle" data-on="Basins" data-off="Basins" data-onstyle="primary" data-offstyle="danger">
@@ -125,7 +126,9 @@
                                       <button id="saveDataLulc" class="btn btn-success hidden" type="button">Add Data to Cart</button>
                           <button id="clip_and_compute_soil" class="btn btn-primary hidden" type="button">Clip and Compute</button>
                                       <button id="saveDataSoil" class="btn btn-success hidden" type="button">Add Data to Cart</button>
-
+                                <button class="btn btn-primary hidden" id="nasaaccess" style="margin-right: 12px">Run nasaaccess </button>
+                              <button class="btn btn-primary hidden" id="download_data">Download Data</button>
+                                      <input class="btn btn-primary hidden" type="submit" value="Download" id="download_zip" style="background-color: #337ab7;height: 34px">
                         <button id="saveData" class="btn btn-success hidden" type="button">Add Data to Cart</button>
                       </div>
                       <button type="button" class="btn btn-primary" id="close_tab"  data-dismiss="modal">Close</button>
@@ -283,9 +286,11 @@
                     </div>
                      </div>
                 <br>
+                    <br>
                     <h6><strong>Select NASAaccess Functions</strong></h6>
                     <table id=nasaaccessFunctions class="table table-striped">
                         <thead>
+                          <tr>
                           <tr>
                             <th></th>
                             <th>Function</th>
@@ -322,8 +327,8 @@
                     </table>
 
                 <br>
-                <button class="btn btn-primary" id="nasaaccess">Run nasaaccess</button>
-                              <br> <br> <button class="btn btn-primary btn-success" id="download_data">Download Data</button>
+{#                <button class="btn btn-primary" id="nasaaccess">Run nasaaccess</button>#}
+{#                              <br> <br> <button class="btn btn-primary" id="download_data">Download Data</button>#}
                 </div>
                 <div id="nasaaccess_map_container" class="nasaaccess_map_container">
                   <div id="nasaaccess_map" class="nasaaccess_map"></div>
@@ -367,7 +372,7 @@
                     <form class="form" method="post" enctype="multipart/form-data" action="{% url 'swatApp:download_files' %}">
                         {% csrf_token %}
                         <input id="userID" class="hidden" type="text" name="userID">
-                        <input type="submit" value="Download">
+{#                        <input type="submit" value="Download" style="background-color: #337ab7">#}
                     </form>
                 </div>
             </div>
