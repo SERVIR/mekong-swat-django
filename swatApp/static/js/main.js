@@ -1203,30 +1203,44 @@ var LIBRARY_OBJECT = (function() {
 
     updateTab = function() {
         if ($('#rch_link').hasClass('active')) {
+                   $('#download_data').addClass('hidden')
+             $('#nasaaccess').addClass('hidden')
             $('#rch_compute').removeClass('hidden')
             rch_map.updateSize();
             rch_map.getView().fit(sessionStorage.streamExtent.split(',').map(Number), rch_map.getSize());
         } else if ($('#sub_link').hasClass('active')) {
+                   $('#download_data').addClass('hidden')
+             $('#nasaaccess').addClass('hidden')
             $('#sub_compute').removeClass('hidden')
             sub_map.updateSize();
             sub_map.getView().fit(sessionStorage.basinExtent.split(',').map(Number), sub_map.getSize());
         } else if ($("#lulc_link").hasClass('active')) {
+                   $('#download_data').addClass('hidden')
+             $('#nasaaccess').addClass('hidden')
             // $('#clip_lulc').removeClass('hidden')
             // $('#lulc_compute').removeClass('hidden')
              $('#clip_and_compute_lulc').removeClass('hidden')
             lulc_map.updateSize();
             lulc_map.getView().fit(sessionStorage.basinExtent.split(',').map(Number), lulc_map.getSize());
         } else if ($('#soil_link').hasClass('active')) {
+                   $('#download_data').addClass('hidden')
+             $('#nasaaccess').addClass('hidden')
             // $('#clip_soil').removeClass('hidden')
             // $('#soil_compute').removeClass('hidden')
     $('#clip_and_compute_soil').removeClass('hidden')
             soil_map.updateSize();
             soil_map.getView().fit(sessionStorage.basinExtent.split(',').map(Number), soil_map.getSize());
         } else if ($('#nasaaccess_link').hasClass('active')) {
+                $('#download_data').removeClass('hidden')
+              $('#download_zip').addClass('hidden')
+              $('#nasaaccess').removeClass('hidden')
             nasaaccess_map.updateSize();
             nasaaccess_map.getView().fit(sessionStorage.basinExtent.split(',').map(Number), nasaaccess_map.getSize());
         } else if ($('#datacart_tab').hasClass('active')) {
-            $('#downloadData').removeClass('hidden')
+            $('#downloadData').addClass('hidden')
+                 $('#download_data').addClass('hidden')
+             $('#nasaaccess').addClass('hidden')
+               $('#download_zip').removeClass('hidden')
         }
     }
 
@@ -1798,10 +1812,12 @@ var LIBRARY_OBJECT = (function() {
                 }
                 if (nasaaccess === 'Yes') {
                     $('#na-not-avail').addClass('hidden')
-                    $('#nasaaccess').attr('disabled', false)
+                    // $('#nasaaccess').removeClass('hidden')
+                    // $('#download_data').removeClass('hidden')
                 } else {
                     $('#na-not-avail').removeClass('hidden')
-                    $('#nasaaccess').attr('disabled', true)
+                     $('#nasaaccess').addClass('hidden')
+                       $('#download_data').addClass('hidden')
                 }
             }
         })
